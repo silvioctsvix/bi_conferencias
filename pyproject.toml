@@ -1,0 +1,13 @@
+[project]
+name = "bi_conferencias"
+version = "0.1.0"
+description = "Projeto de atualização e conferência BI"
+authors = ["Seu Nome <seu.email@exemplo.com>"]
+
+dependencies = [
+    "pandas",
+    "openpyxl",
+    "pyodbc",
+    "apscheduler",
+    "python-dotenv"
+] 

@@ -1,0 +1,42 @@
+# Ignorar ambientes virtuais
+.venv/
+venv/
+
+# Ignorar arquivos de variáveis de ambiente
+.env
+
+# Ignorar arquivos de log
+*.log
+
+# Ignorar arquivos temporários do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignorar arquivos de notebooks temporários
+.ipynb_checkpoints/
+
+# Ignorar arquivos de notebooks 
+*.ipynb
+
+# Ignorar arquivos temporários do sistema
+*.tmp
+*.temp
+
+# Ignorar arquivos de configuração do VSCode
+.vscode/
+
+# Ignorar arquivos de build
+build/
+dist/
+*.egg-info/
+
+# Ignorar arquivos do py2exe
+*.exe
+*.dll
+*.manifest
+*.spec
+
+# Ignorar arquivos CSV grandes de saída
+*.csv 
