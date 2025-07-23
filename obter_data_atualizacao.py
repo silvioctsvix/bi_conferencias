@@ -96,13 +96,13 @@ def salvar_planilha_seguro(pasta_trabalho, caminho_destino):
     if not verificar_diretorio(diretorio_destino):
         logging.error(f"Diretório de destino {diretorio_destino} não tem permissões adequadas.")
         # Tentar usar um diretório alternativo
-        diretorio_destino = "D:\\Temp"
+        diretorio_destino = r"D:\Temp"
         caminho_destino = os.path.join(diretorio_destino, os.path.basename(caminho_destino))
         logging.info(f"Tentando usar diretório alternativo: {diretorio_destino}")
         verificar_diretorio(diretorio_destino)
     
     # Criar diretório temporário local se não existir
-    temp_dir = "D:\\Temp"
+    temp_dir = r"D:\Temp"
     if not os.path.exists(temp_dir):
         os.makedirs(temp_dir)
         logging.info(f"Diretório temporário criado: {temp_dir}")
@@ -153,7 +153,7 @@ def salvar_planilha_seguro(pasta_trabalho, caminho_destino):
 
 def obter_data():
     logging.info("Iniciando obter_data()")
-    diretorio = "D:\\Silvio\\OneDrive\\Trabalho\\POWER BI\\AUDITORIA PROCESSO SS DIGITAL - NEW\\"
+    diretorio = r"D:\\Silvio\\OneDrive\\Trabalho\\POWER BI\\AUDITORIA PROCESSO SS DIGITAL - NEW\\"
     arquivo   = "UltimaAtualização.xlsx"
     planilha  = 'Ultima'
     linha     = 2
@@ -169,7 +169,7 @@ def obter_data():
     logging.info(f"Verificando permissões do diretório: {diretorio}")
     verificar_diretorio(diretorio)
 
-    caminho_completo = diretorio + arquivo
+    caminho_completo = os.path.join(diretorio, arquivo)
     logging.info(f"Verificando permissões do arquivo: {caminho_completo}")
     verificar_remover_readonly(caminho_completo)
 
@@ -229,7 +229,7 @@ def obter_data():
                 logging.error("Falha ao salvar planilha de forma segura")
                 
                 # Tentar salvar em caminho alternativo se falhar
-                caminho_alternativo = "D:\\Temp\\" + arquivo
+                caminho_alternativo = rf"D:\Temp\{arquivo}"
                 logging.info(f"Tentando salvar em caminho alternativo: {caminho_alternativo}")
                 sucesso_alt = salvar_planilha_seguro(pasta_trabalho, caminho_alternativo)
                 if sucesso_alt:

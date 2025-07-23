@@ -12,9 +12,9 @@ def criar_planilha_controle():
     print("Criando arquivo de controle de última atualização...")
     
     # Definir caminhos
-    diretorio = "D:\\Silvio\\OneDrive\\Trabalho\\POWER BI\\AUDITORIA PROCESSO SS DIGITAL - NEW\\"
+    diretorio = r"D:\\Silvio\\OneDrive\\Trabalho\\POWER BI\\AUDITORIA PROCESSO SS DIGITAL - NEW\\"
     arquivo = "UltimaAtualização.xlsx"
-    caminho_completo = diretorio + arquivo
+    caminho_completo = os.path.join(diretorio, arquivo)
     
     # Verificar e criar diretório se não existir
     if not os.path.exists(diretorio):
@@ -24,8 +24,8 @@ def criar_planilha_controle():
         except Exception as e:
             print(f"Erro ao criar diretório: {str(e)}")
             # Tentar diretório alternativo
-            diretorio = "D:\\Temp\\"
-            caminho_completo = diretorio + arquivo
+            diretorio = r"D:\\Temp\\"
+            caminho_completo = os.path.join(diretorio, arquivo)
             print(f"Tentando diretório alternativo: {diretorio}")
             if not os.path.exists(diretorio):
                 os.makedirs(diretorio, exist_ok=True)
