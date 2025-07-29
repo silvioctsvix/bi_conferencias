@@ -1,1 +1,21 @@
- 
+# Dependências principais do projeto BI Conferências
+# Bibliotecas para manipulação de dados
+pandas>=1.5.0,<2.0.0
+
+# Bibliotecas para manipulação de arquivos Excel
+openpyxl>=3.0.0,<4.0.0
+
+# Biblioteca para conexão com banco de dados SQL Server
+pyodbc>=4.0.0,<5.0.0
+
+# Biblioteca para agendamento de tarefas
+APScheduler>=3.10.0,<4.0.0
+
+# Biblioteca para carregamento de variáveis de ambiente
+python-dotenv>=1.0.0,<2.0.0
+
+# Bibliotecas padrão do Python (não precisam ser instaladas separadamente)
+# datetime, os, shutil, logging, sys, traceback, stat, tempfile, re, warnings
+
+# Dependência opcional para compilação (usada no setup.py)
+# py2exe>=0.11.0  # Descomente se precisar compilar executável
