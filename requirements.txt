@@ -1,6 +1,8 @@
 # Dependências principais do projeto BI Conferências
 # Bibliotecas para manipulação de dados
-pandas>=1.5.0,<2.0.0
+pandas==1.5.3
+
+numpy==1.23.5
 
 # Bibliotecas para manipulação de arquivos Excel
 openpyxl>=3.0.0,<4.0.0
