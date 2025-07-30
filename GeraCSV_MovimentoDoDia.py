@@ -35,27 +35,49 @@ caracter_separador              = '|'
 
 #10.4.2.51
 #10.243.129.234
-def conecta_ao_banco(
-    driver=None,
-    server=None,
-    database=None,
-    username=None,
-    password=None,
-    ApplicationIntent=None
-):
-    driver = driver or os.environ.get("DB_DRIVER", "ODBC Driver 17 for SQL Server")
-    server = server or os.environ.get("DB_SERVER")
-    database = database or os.environ.get("DB_DATABASE")
-    username = username or os.environ.get("DB_USERNAME")
-    password = password or os.environ.get("DB_PASSWORD")
-    ApplicationIntent = ApplicationIntent or os.environ.get("DB_APPLICATION_INTENT", "ReadOnly")
+import os
+import pyodbc
 
-    string_conexao = (
-        f"DRIVER={driver};SERVER={server};DATABASE={database};"
-        f"UID={username};PWD={password};APPLICATIONINTENT={ApplicationIntent}"
+
+def conecta_ao_banco(
+    driver: str | None = None,
+    server: str | None = None,
+    database: str | None = None,
+    username: str | None = None,
+    password: str | None = None,
+    application_intent: str | None = None,
+    encrypt: str | None = None,
+    trust_cert: str | None = None,
+):
+    """
+    Abre conexão com SQL Server usando o driver ODBC 18 (Linux).
+
+    • Qualquer argumento pode ser omitido: o valor será lido de uma variável
+      de ambiente correspondente.
+    • Parâmetros extra (encrypt, trust_cert) permitem ajuste fino sem mexer
+      na string principal.
+    """
+
+    driver = driver or os.getenv("DB_DRIVER", "ODBC Driver 18 for SQL Server")
+    server = server or os.getenv("DB_SERVER")
+    database = database or os.getenv("DB_DATABASE")
+    username = username or os.getenv("DB_USERNAME")
+    password = password or os.getenv("DB_PASSWORD")
+    application_intent = application_intent or os.getenv("DB_APPLICATION_INTENT", "ReadOnly")
+    encrypt = encrypt or os.getenv("DB_ENCRYPT", "yes")  # yes|no
+    trust_cert = trust_cert or os.getenv("DB_TRUST_CERT", "yes")  # yes|no
+
+    conn_str = (
+        f"DRIVER={{{driver}}};"
+        f"SERVER={server};"
+        f"DATABASE={database};"
+        f"UID={username};PWD={password};"
+        f"APPLICATIONINTENT={application_intent};"
+        f"Encrypt={encrypt};"
+        f"TrustServerCertificate={trust_cert};"
     )
-    conexao = pyodbc.connect(string_conexao)
-    return conexao
+
+    return pyodbc.connect(conn_str)
 
 def manter_imprimiveis(texto):
     return ''.join(re.findall(r'[\x20-\x7E]', str(texto)))
